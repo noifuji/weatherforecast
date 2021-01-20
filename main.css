@@ -1,0 +1,122 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+
+.header {
+    height: 70px;
+    background-color: #FA6800;
+    padding: 1px;
+}
+
+.header_title {
+    margin-top: 12px;
+    margin-left: 50px;
+    font-size: xx-large;
+    color: white;
+}
+
+.main_contents {
+    background-color: #FAD7AC;
+    position: relative;
+    height: auto;
+    min-height: 100%;
+}
+
+.weather_forecast {
+    padding-top: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 100%;
+    background-color: #FAD7AC;
+}
+
+
+.add_city {
+    text-align: center;
+}
+
+
+#btn_add_city {
+    width: 70px;
+    height: 50px;
+    background: #FA6800;
+    border-radius: 30px;
+    color: white;
+    font-size: x-large;
+    outline: none;
+}
+
+.city {
+    margin: 0px 10px 10px 10px;
+    border: 1px solid;
+    box-shadow: 0px 3px 5px 0 rgb(0 0 0 / 50%);
+    background-color: white;
+}
+
+.city_header {
+    overflow: hidden;
+    height: 50px;
+}
+
+.city_name {
+    float: left;
+    font-size: x-large;
+    margin: 10px 10px 10px 30px;
+}
+
+.btn_delete {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 30px;
+    color: black;
+    font-size: medium;
+    outline: none;
+}
+
+.delete_city {
+    float: right;
+    margin: 10px;
+}
+
+#forecast_area {
+    overflow: hidden;
+    margin: 30px 30px 30px 30px;
+}
+
+.forecast {
+    float: left;
+    padding: 3px
+}
+
+.day {
+    text-align: center;
+}
+
+img {
+    max-width: 75px;
+}
+
+#add_city_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    width: 400px;
+    margin: 20% auto;
+}
