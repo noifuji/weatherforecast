@@ -30,10 +30,11 @@ body {
 
 .weather_forecast {
     padding-top: 10px;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: auto;
+    margin-right: auto;
     height: 100%;
     background-color: #FAD7AC;
+    width:650px;
 }
 
 
@@ -85,7 +86,7 @@ body {
     margin: 10px;
 }
 
-#forecast_area {
+.forecast_area {
     overflow: hidden;
     margin: 30px 30px 30px 30px;
 }
@@ -103,6 +104,19 @@ img {
     max-width: 75px;
 }
 
+.temp {
+    font-size:small;
+    text-align: center;
+}
+
+.max_temp {
+    color:red;
+}
+
+.min_temp {
+    color:blue;
+}
+
 #add_city_modal {
     display: none;
     position: fixed;
@@ -115,8 +129,40 @@ img {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
-    background-color: white;
+
+
+.modal_content {
+    background-color: #FAD7AC;
     width: 400px;
     margin: 20% auto;
+}
+
+.modal_header {
+    background-color: #FA6800;
+    color:white;
+    padding: 0 0 0 10px;
+}
+
+.modal_body {
+    padding: 10px;
+}
+
+.modal_input_area {
+    text-align: center;
+    margin: 30px 0 30px 0;
+}
+
+.modal_button_area {
+    text-align: center;
+}
+
+
+.modal_combo {
+    font-size: large;
+    width:100px;
+}
+
+.modal_button {
+    font-size: large;
+    width:100px;
 }

@@ -2,7 +2,7 @@
 
 //定数の定義
 const API_URL = "https://api.openweathermap.org/data/2.5/onecall";
-const API_KEY = "";
+const API_KEY = "a7e9d3122431d6b00deeb26b66ccf174";
 const CITY_INFO = [{
         "id": 2110556,
         "name": "山形",
@@ -87,12 +87,6 @@ function onClickAddCity() {
     modal.style.display = 'block';
 }
 
-function onClickDelteCity() {
-    let deleteCityId = this.value;
-    state.displayCities = state.displayCities.filter(city => city.id != deleteCityId);
-    updateWeatherForecast()
-}
-
 function onClickCancelAddCity() {
     let modal = document.getElementById('add_city_modal');
     modal.style.display = 'none';
@@ -108,7 +102,13 @@ function onClickOKAddCity() {
     let modal = document.getElementById('add_city_modal');
     modal.style.display = 'none';
     //表示対象を追加して画面再描画を行う。
-    updateWeatherForecast()
+    updateWeatherForecast();
+}
+
+function onClickDelteCity() {
+    let deleteCityId = this.value;
+    state.displayCities = state.displayCities.filter(city => city.id != deleteCityId);
+    updateWeatherForecast();
 }
 
 function updateWeatherForecast() {
@@ -139,12 +139,14 @@ function updateWeatherForecast() {
             let cityElement = generateCityElement(city.name, city.id);
             console.log(cityElement);
             for (let j = 1; j < jsons[i].daily.length; j++) {
-                let forecastElement = generateForecastElement(jsons[i].daily[j].dt * 1000, jsons[i].daily[j].weather[0].icon);
-                cityElement.getElementById("forecast_area").appendChild(forecastElement.getRootNode().body);
+                let forecastElement = generateForecastElement(jsons[i].daily[j].dt * 1000, 
+                jsons[i].daily[j].weather[0].icon, jsons[i].daily[j].temp.max, jsons[i].daily[j].temp.min);
+                
+                cityElement.getElementsByClassName("forecast_area")[0].appendChild(forecastElement.getElementsByClassName("forecast")[0]);
             }
 
             //要素を流し込む。
-            cityListElement.appendChild(cityElement.getRootNode().body);
+            cityListElement.appendChild(cityElement.getElementsByClassName("city")[0]);
         }
         
         let btnDeletes = document.getElementsByClassName("btn_delete");
@@ -166,7 +168,7 @@ function generateCityElement(cityname, cityid) {
         '</div>' +
         '</div>' +
         '<div class="city_body">' +
-        '<div id="forecast_area">' +
+        '<div class="forecast_area">' +
         '</div>' +
         '</div>' +
         '</div>';
@@ -176,7 +178,7 @@ function generateCityElement(cityname, cityid) {
 
 }
 
-function generateForecastElement(dt, iconId) {
+function generateForecastElement(dt, iconId, maxTemp, minTemp) {
     let datetime = new Date(dt);
     let month = datetime.getMonth() + 1;
     let date = datetime.getDate();
@@ -186,12 +188,13 @@ function generateForecastElement(dt, iconId) {
         '<div class="forecast_image">' +
         '<img src="./img/' + iconId + '@2x.png">' +
         '</div>' +
+        '<span class="temp"><span class="max_temp">' + maxTemp + '</span>/<span class="min_temp">' + minTemp + '</span></span>'
         '</div>';
     return new DOMParser().parseFromString(forecastHtml, "text/html");
 }
 
 function getWeatherQuery(lat, lon) {
-    return API_URL + "?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&lan=ja&appid=" + API_KEY;
+    return API_URL + "?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=metric&lan=ja&appid=" + API_KEY;
 }
 
 
